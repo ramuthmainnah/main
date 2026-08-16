@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG-RA Muthmainnah - PAUD & TK Islam Terbaik di Bandung</title>
+    
+    <!-- Memuat Font Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Memuat Library Animasi AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hijauSage: '#A3B18A',     
+                        hijauSageTua: '#588157',  
+                        kuning: '#FDE047',        
+                        biruMuda: '#BAE6FD',      
+                        putih: '#FFFFFF',         
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'kartun': '6px 6px 0px 0px rgba(88, 129, 87, 0.2)',
+                        'kartun-hover': '10px 10px 0px 0px rgba(88, 129, 87, 0.3)',
+                    },
+                    animation: {
+                        spinSlow: "spin 20s linear infinite",
+                        float: "float 6s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-20px)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        
+        /* CSS Khusus untuk Bintang Islami (Rub el Hizb) */
+        .islamic-star {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+        }
+        .islamic-star::before, .islamic-star::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 10px; 
+        }
+        .islamic-star::before {
+            transform: rotate(45deg);
+        }
+
+        /* CSS Khusus untuk Bulan Sabit */
+        .crescent {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            box-shadow: -40px 20px 0 0 rgba(253, 224, 71, 0.6); 
+        }
+
+        @media (max-width: 768px) {
+            .islamic-star {
+                width: 150px; 
+                height: 150px;
+            }
+            .islamic-star::before, .islamic-star::after {
+                border-radius: 6px; 
+            }
+            .crescent {
+                width: 120px;  
+                height: 120px;
+                box-shadow: -20px 10px 0 0 rgba(253, 224, 71, 0.6); 
+            }
+        }
+    </style>
+</head>
+<body class="bg-putih text-hijauSageTua font-sans selection:bg-kuning selection:text-hijauSageTua overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="bg-putih border-b-4 border-kuning p-4 sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto max-w-7xl flex justify-between items-center">
+            
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="bg-putih p-1.5 rounded-2xl shadow-kartun group-hover:-translate-y-1 transition-all duration-300 border-2 border-hijauSageTua">
+                    <img src="logo.png" alt="Logo PG-RA Muthmainnah" class="h-10 w-10 md:h-12 md:w-12 object-contain group-hover:rotate-6 transition-transform">
+                </div>
+                <h1 class="text-xl md:text-2xl font-extrabold text-hijauSageTua tracking-tight">
+                    PG-RA Muthmainnah
+                </h1>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-2 font-bold text-hijauSageTua">
+                <a href="#home" class="hover:bg-biruMuda px-5 py-2 rounded-full transition-colors">Home</a>
+                <a href="#about" class="hover:bg-kuning px-5 py-2 rounded-full transition-colors">Tentang Kami</a>
+                <a href="#program" class="hover:bg-hijauSage hover:text-putih px-5 py-2 rounded-full transition-colors">Program</a>
+                <a href="#instagram" class="hover:bg-biruMuda px-5 py-2 rounded-full transition-colors mr-4">Galeri & Media Sosial</a>
+                
+                <a href="https://wa.me/6282381484724" target="_blank" class="bg-kuning text-hijauSageTua px-8 py-3 rounded-full font-extrabold shadow-kartun hover:shadow-kartun-hover hover:-translate-y-1 transition-all duration-300 border-2 border-hijauSageTua">
+                    Daftar Sekarang
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-hijauSageTua focus:outline-none p-3 bg-kuning border-2 border-hijauSageTua rounded-xl shadow-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute top-[100%] left-0 w-full bg-putih border-b-4 border-kuning shadow-xl pb-6 pt-2 px-6 flex-col space-y-2 font-bold text-hijauSageTua">
+            <a href="#home" class="block py-3 px-4 rounded-xl hover:bg-biruMuda transition-all">Home</a>
+            <a href="#about" class="block py-3 px-4 rounded-xl hover:bg-kuning transition-all">Tentang Kami</a>
+            <a href="#program" class="block py-3 px-4 rounded-xl hover:bg-hijauSage hover:text-putih transition-all">Program</a>
+            <a href="#instagram" class="block py-3 px-4 rounded-xl hover:bg-biruMuda transition-all">Galeri & Media Sosial</a>
+            <a href="https://wa.me/6282381484724" target="_blank" class="bg-kuning text-center text-hijauSageTua px-4 py-4 rounded-xl font-extrabold block mt-4 border-2 border-hijauSageTua shadow-kartun">
+                Daftar Sekarang via WA
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION DENGAN DEKORASI ISLAMI MODERN -->
+    <section id="home" class="relative pt-16 pb-24 md:pt-32 md:pb-40 px-6 overflow-hidden bg-biruMuda z-0">
+        
+        <!-- Latar Belakang Ornamen Islami -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="islamic-star top-[-50px] left-[-100px] opacity-40 blur-xl animate-spinSlow">
+                <div class="w-full h-full bg-putih rounded-xl absolute top-0 left-0"></div>
+                <div class="w-full h-full bg-putih rounded-xl absolute top-0 left-0 rotate-45"></div>
+            </div>
+            
+            <div class="crescent top-40 right-10 opacity-70 blur-2xl animate-float animation-delay-2000"></div>
+
+            <div class="islamic-star bottom-[-100px] left-[20%] opacity-30 blur-2xl animate-spinSlow" style="animation-direction: reverse;">
+                <div class="w-full h-full bg-hijauSage rounded-xl absolute top-0 left-0"></div>
+                <div class="w-full h-full bg-hijauSage rounded-xl absolute top-0 left-0 rotate-45"></div>
+            </div>
+        </div>
+
+        <div class="container mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="text-center lg:text-left z-10" data-aos="fade-right" data-aos-duration="1000">
+                <span class="inline-flex items-center py-2 px-6 rounded-full bg-kuning shadow-sm border-2 border-hijauSageTua text-hijauSageTua font-extrabold text-sm mb-8">
+                    <span class="flex w-3 h-3 bg-hijauSageTua rounded-full mr-3 animate-pulse"></span>
+                    Pendaftaran Tahun Ajaran Baru
+                </span>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-putih mb-6 leading-tight tracking-tight drop-shadow-md">
+                    Membentuk <br />
+                    <span class="text-hijauSageTua">Generasi Cerdas</span> & 
+                    <span class="text-kuning drop-shadow-none">Berakhlak.</span>
+                </h2>
+                <p class="text-lg md:text-2xl text-hijauSageTua mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-bold bg-putih/40 backdrop-blur-sm p-4 rounded-2xl inline-block border border-putih">
+                    Pendidikan Anak usia dini terbaik di Kota Bandung. Memadukan nilai Islam, kreativitas, dan budaya Sunda.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-5 mt-4">
+                    <a href="#pendaftaran" class="w-full sm:w-auto bg-putih text-hijauSageTua text-xl font-extrabold px-10 py-5 rounded-full shadow-kartun hover:shadow-kartun-hover hover:-translate-y-1 hover:bg-kuning transition-all duration-300 border-4 border-hijauSageTua flex items-center justify-center">
+                        Pendaftaran <span class="ml-3 text-2xl">📝</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- KOLOM GAMBAR -->
+            <div class="relative z-10 hidden lg:block" data-aos="fade-left" data-aos-duration="1200">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-kuning rounded-[3rem] rotate-6 scale-105 border-4 border-hijauSageTua"></div>
+                    <img src="foto3.webp" alt="Guru PG-RA Muthmainnah" class="relative rounded-[3rem] w-full h-[550px] object-cover border-8 border-putih shadow-kartun">
+                    
+                    <div class="absolute -bottom-8 -left-8 bg-putih p-5 rounded-3xl shadow-kartun flex items-center space-x-4 border-4 border-hijauSageTua">
+                        <div class="w-16 h-16 bg-biruMuda rounded-2xl flex items-center justify-center text-4xl border-2 border-hijauSageTua">🏆</div>
+                        <div>
+                            <p class="font-extrabold text-hijauSageTua text-2xl">Pendidik</p>
+                            <p class="text-hijauSageTua text-sm font-bold">Profesional & Berdedikasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="about" class="py-24 px-6 bg-kuning relative z-10 border-y-8 border-putih">
+        <div class="container mx-auto max-w-5xl text-center bg-putih rounded-[3rem] shadow-kartun p-10 md:p-20 border-4 border-hijauSageTua" data-aos="fade-up" data-aos-duration="1000">
+            <h3 class="text-hijauSageTua bg-putih inline-block px-6 py-2 rounded-full font-extrabold tracking-widest uppercase text-sm mb-6 border-2 border-hijauSageTua">Tentang Kami</h3>
+            
+            <h2 class="text-4xl md:text-5xl font-extrabold text-hijauSageTua mb-8">Selamat Datang di PG-RA Muthmainnah</h2>
+            <p class="text-lg md:text-2xl text-hijauSageTua leading-relaxed font-semibold">
+                Raudhatul Athfal (TK Islam) terpercaya yang didedikasikan untuk anak usia 3-6 tahun. Fokus kami bukan sekadar calistung, melainkan penanaman karakter Islami yang kuat serta pengenalan adab budaya Sunda <em class="bg-hijauSage text-putih px-2 rounded-lg">"cageur, bageur, pinter, tur singer"</em> melalui metode yang menyenangkan.
+            </p>
+        </div>
+    </section>
+
+    <!-- PROGRAM UNGGULAN -->
+    <section id="program" class="py-24 px-6 bg-putih">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h3 class="text-hijauSageTua bg-kuning inline-block px-6 py-2 rounded-full font-extrabold tracking-widest uppercase text-sm mb-4 border-2 border-hijauSageTua">Pendidikan Terbaik</h3>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-hijauSageTua">Program Unggulan Kami</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-biruMuda p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">🎨</div>
+                    <h4 class="text-3xl font-extrabold text-hijauSageTua mb-4">Belajar & Bermain</h4>
+                    <p class="text-hijauSageTua leading-relaxed font-bold text-lg">Metode interaktif yang merangsang kognitif anak tanpa membuat mereka merasa bosan belajar.</p>
+                </div>
+                
+                <div class="bg-kuning p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">📖</div>
+                    <h4 class="text-3xl font-extrabold text-hijauSageTua mb-4">Tahfidz Anak</h4>
+                    <p class="text-hijauSageTua leading-relaxed font-bold text-lg">Pembiasaan hafalan surat pendek dan doa harian dengan metode talaqqi yang ceria dan ringan.</p>
+                </div>
+                
+                <div class="bg-hijauSage p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">🔤</div>
+                    <h4 class="text-3xl font-extrabold text-putih mb-4">English for Kids</h4>
+                    <p class="text-putih leading-relaxed font-bold text-lg">Pengenalan kosa kata bahasa Inggris dasar dengan cara interaktif melalui nyanyian dan permainan.</p>
+                </div>
+                
+                <div class="bg-kuning p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">🌳</div>
+                    <h4 class="text-3xl font-extrabold text-hijauSageTua mb-4">Outing Class</h4>
+                    <p class="text-hijauSageTua leading-relaxed font-bold text-lg">Kegiatan belajar langsung di alam atau tempat edukasi untuk memperluas wawasan dan pengalaman anak.</p>
+                </div>
+                
+                <div class="bg-hijauSage p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">🎭</div>
+                    <h4 class="text-3xl font-extrabold text-putih mb-4">Seni & Kreativitas</h4>
+                    <p class="text-putih leading-relaxed font-bold text-lg">Mengembangkan imajinasi dan bakat seni anak melalui kegiatan menggambar, mewarnai, hingga pentas.</p>
+                </div>
+                
+                <div class="bg-biruMuda p-10 rounded-[2.5rem] shadow-kartun hover:shadow-kartun-hover hover:-translate-y-2 transition-all duration-300 border-4 border-hijauSageTua group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-putih text-hijauSageTua border-4 border-hijauSageTua rounded-full flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform">🤝</div>
+                    <h4 class="text-3xl font-extrabold text-hijauSageTua mb-4">Karakter & Budaya</h4>
+                    <p class="text-hijauSageTua leading-relaxed font-bold text-lg">Membentuk akhlak mulia dengan pendekatan kearifan lokal budaya Sunda yang sopan dan santun.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM FEED SECTION DENGAN GAMBAR -->
+    <section id="instagram" class="py-24 px-6 bg-hijauSage border-y-8 border-putih">
+        <div class="container mx-auto max-w-7xl">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
+                <div>
+                    <h3 class="text-hijauSageTua bg-kuning inline-block px-6 py-2 rounded-full font-extrabold tracking-widest uppercase text-sm mb-4 border-2 border-hijauSageTua">Media Sosial Kami</h3>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-putih">Update Instagram Terbaru</h2>
+                </div>
+                <a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="hidden md:inline-flex items-center space-x-2 text-hijauSageTua font-extrabold hover:bg-biruMuda transition-colors bg-kuning px-8 py-4 rounded-full mt-6 md:mt-0 shadow-kartun border-2 border-hijauSageTua">
+                    <span>Follow @pgra_muthmainnah</span>
+                    <span class="text-xl">🚀</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- Box 1 (foto6.jpeg - Perlombaan Kemerdekaan) -->
+                <a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="w-full bg-putih rounded-3xl overflow-hidden shadow-kartun flex flex-col min-h-[400px] border-4 border-hijauSageTua relative group cursor-pointer block">
+                    <!-- Memanggil foto6.jpeg -->
+                    <img src="foto6.jpeg" alt="Perlombaan Memperingati Kemerdekaan" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-hijauSageTua/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+                        <span class="text-putih font-extrabold text-lg border-2 border-putih px-4 py-2 rounded-full">Lihat di IG 📱</span>
+                    </div>
+                    <!-- Ikon hati disamakan dengan foto lainnya -->
+                    <div class="absolute top-4 right-4 bg-putih p-2 rounded-full shadow-sm text-pink-500 z-20">❤️</div>
+                </a>
+
+                <!-- Box 2 (foto4.webp - Wisuda Anak) -->
+                <a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="w-full bg-biruMuda rounded-3xl overflow-hidden shadow-kartun flex flex-col min-h-[400px] border-4 border-hijauSageTua relative group cursor-pointer block">
+                     <img src="foto4.webp" alt="Pelepasan Siswa PG-RA Muthmainnah" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-hijauSageTua/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+                        <span class="text-putih font-extrabold text-lg border-2 border-putih px-4 py-2 rounded-full">Lihat di IG 📱</span>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-putih p-2 rounded-full shadow-sm text-pink-500 z-20">❤️</div>
+                </a>
+
+                <!-- Box 3 (foto5.webp - Pentas Seni/Penampilan) -->
+                <a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="w-full bg-kuning rounded-3xl overflow-hidden shadow-kartun hidden lg:flex flex-col min-h-[400px] border-4 border-hijauSageTua relative group cursor-pointer block">
+                     <img src="foto5.webp" alt="Pentas Seni Anak" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-hijauSageTua/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+                        <span class="text-putih font-extrabold text-lg border-2 border-putih px-4 py-2 rounded-full">Lihat di IG 📱</span>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-putih p-2 rounded-full shadow-sm text-pink-500 z-20">❤️</div>
+                </a>
+
+            </div>
+            
+            <div class="text-center mt-12 md:hidden">
+                <a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="inline-flex items-center space-x-2 text-hijauSageTua font-extrabold transition-colors bg-kuning px-8 py-4 rounded-full shadow-kartun border-4 border-hijauSageTua">
+                    <span>Follow Instagram Kami 🚀</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM PENDAFTARAN SISWA BARU -->
+    <section id="pendaftaran" class="py-16 px-6 bg-putih pb-24">
+        <div class="container mx-auto max-w-5xl" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="bg-biruMuda rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden shadow-kartun border-8 border-kuning mt-12">
+                
+                <div class="absolute top-0 right-0 w-64 h-64 bg-putih/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-kuning/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+                
+                <div class="relative z-10">
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-hijauSageTua mb-4">Pendaftaran Siswa Baru Dibuka!</h3>
+                    <p class="text-xl text-hijauSageTua mb-8 max-w-3xl mx-auto font-bold leading-relaxed">
+                        Mari bergabung bersama keluarga besar PG-RA Muthmainnah. Isi formulir di bawah ini untuk mengirimkan data pendaftaran Anda langsung via WhatsApp.
+                    </p>
+                    
+                    <!-- FORMULIR PENDAFTARAN -->
+                    <form id="form-ppdb" class="bg-putih p-6 md:p-10 rounded-[2rem] shadow-sm border-4 border-hijauSageTua text-left max-w-2xl mx-auto relative z-20">
+                        <div class="mb-5">
+                            <label class="block text-hijauSageTua font-extrabold mb-2 text-lg">Nama Lengkap Anak</label>
+                            <input type="text" id="nama_anak" class="w-full px-5 py-3 rounded-xl border-4 border-biruMuda focus:border-kuning focus:outline-none font-bold text-gray-700" required placeholder="Masukkan nama anak...">
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-hijauSageTua font-extrabold mb-2 text-lg">Usia Anak</label>
+                            <input type="number" id="usia_anak" class="w-full px-5 py-3 rounded-xl border-4 border-biruMuda focus:border-kuning focus:outline-none font-bold text-gray-700" required placeholder="Contoh: 4">
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-hijauSageTua font-extrabold mb-2 text-lg">Nama Orang Tua (Ayah/Bunda)</label>
+                            <input type="text" id="nama_ortu" class="w-full px-5 py-3 rounded-xl border-4 border-biruMuda focus:border-kuning focus:outline-none font-bold text-gray-700" required placeholder="Nama orang tua...">
+                        </div>
+                        <div class="mb-8">
+                            <label class="block text-hijauSageTua font-extrabold mb-2 text-lg">Alamat Domisili</label>
+                            <textarea id="alamat" class="w-full px-5 py-3 rounded-xl border-4 border-biruMuda focus:border-kuning focus:outline-none font-bold text-gray-700" required placeholder="Alamat lengkap..." rows="2"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-kuning text-hijauSageTua text-xl font-extrabold px-8 py-4 rounded-full shadow-kartun hover:shadow-kartun-hover hover:-translate-y-1 transition-all duration-300 border-4 border-hijauSageTua flex items-center justify-center">
+                            Kirim Data via WA 📲
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-hijauSageTua text-putih pt-20 pb-10 px-6 border-t-[16px] border-kuning">
+        <div class="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12 border-b-4 border-putih/20 pb-12 mb-8">
+            <div>
+                <div class="flex items-center space-x-4 mb-6">
+                    <img src="logo.png" alt="Logo PG-RA Muthmainnah" class="h-16 w-16 object-contain bg-putih rounded-2xl p-1.5 border-4 border-kuning">
+                    <h3 class="text-3xl font-extrabold text-putih tracking-tight">PG-RA Muthmainnah</h3>
+                </div>
+                <p class="leading-relaxed text-lg font-bold">Lembaga Pendidikan Anak Usia Dini yang berdedikasi mencetak generasi cerdas, berakhlak mulia, dan cinta Al-Qur'an.</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-extrabold text-kuning mb-6 tracking-wide uppercase">Kontak & Lokasi</h4>
+                <ul class="space-y-4 font-bold text-lg mb-6">
+                    <li class="flex items-start">
+                        <span class="mr-3 text-2xl">📍</span>
+                        <span>Jl. Terusan Padasuka Kp. Cicaheum<br>Kec. Cimenyan, Kab. Bandung<br>RT.01/RW.06 No.10</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-3 text-2xl">📞</span>
+                        <span>0823-8148-4724 (Admin PPDB)</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-extrabold text-kuning mb-6 tracking-wide uppercase">Tautan Cepat</h4>
+                <ul class="space-y-3 text-lg font-bold">
+                    <li><a href="#home" class="hover:text-biruMuda transition-colors">Beranda</a></li>
+                    <li><a href="#about" class="hover:text-biruMuda transition-colors">Tentang Kami</a></li>
+                    <li><a href="#program" class="hover:text-biruMuda transition-colors">Program Unggulan</a></li>
+                    <li><a href="https://www.instagram.com/pgra_muthmainnah" target="_blank" class="hover:text-biruMuda transition-colors">Instagram Kami</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-base flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto font-bold opacity-90">
+            <p>© 2026 PG-RA Muthmainnah. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/6282381484724" target="_blank" class="fixed bottom-6 right-6 bg-kuning text-hijauSageTua p-4 rounded-full shadow-kartun hover:scale-110 hover:bg-putih transition-all duration-300 flex items-center justify-center z-50 group border-4 border-hijauSageTua">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.086 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT LOGIKA -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi Animasi Scroll
+        AOS.init({ once: true, offset: 100 });
+        
+        // Logika Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const menuLinks = menu.querySelectorAll('a');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            });
+        });
+
+        // ==========================================
+        // SCRIPT FORMULIR PENDAFTARAN KE WHATSAPP
+        // ==========================================
+        document.getElementById('form-ppdb').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const namaAnak = document.getElementById('nama_anak').value;
+            const usiaAnak = document.getElementById('usia_anak').value;
+            const namaOrtu = document.getElementById('nama_ortu').value;
+            const alamat = document.getElementById('alamat').value;
+            
+            // NOMOR WA ADMIN
+            const noWA = "6282381484724";
+            
+            // Format pesan yang dirapikan
+            const pesan = `Halo Bunda Admin, saya ingin mendaftarkan anak saya di PG-RA Muthmainnah.%0A*Data Pendaftar:*%0A- Nama Anak: ${namaAnak}%0A- Usia: ${usiaAnak}%0A- Nama Orang Tua: ${namaOrtu}%0A- Alamat: ${alamat}%0AMohon informasi selanjutnya mengenai syarat pendaftaran. Terima kasih!`;
+            
+            window.open(`https://wa.me/${noWA}?text=${pesan}`, '_blank');
+        });
+    </script>
+</body>
+</html>
